@@ -66,7 +66,8 @@ class App extends Component {
                             key={segment.id}
                             lat={segment.lat} 
                             lng={segment.lng}
-                            text={segment.price}/>
+                            text={segment.price}
+                            selected={segment === this.state.selectedSegment}/>
               })}
 
           </GoogleMapReact>

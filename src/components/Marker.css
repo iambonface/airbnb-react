@@ -7,3 +7,7 @@
 	padding: 4px 0;
 	font-size: 18px;
 }
+.Marker.Selected {
+	background-color: yellow;
+	border-color: black;
+}

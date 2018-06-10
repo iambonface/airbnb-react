@@ -3,8 +3,12 @@ import "./Marker.css";
 
 class Marker extends Component {
 	render() {
+		let segmentClasses = "Marker";
+		if(this.props.selected) {
+			segmentClasses += " Selected";
+		}
 		return (
-			<div className="Marker">
+			<div className={segmentClasses}>
 				{this.props.text}€
 			</div>
 
