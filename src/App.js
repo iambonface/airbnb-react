@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       segments: [],
-      selectedSegment: null
+      selectedSegment: null,
+      search: ""
     }
   }
   componentDidMount(){
@@ -30,6 +31,15 @@ class App extends Component {
     })
 
   }
+
+  handleSearch = (event) => {
+    //debugger
+    this.setState({
+      search: event.target.value,
+      segments: this.state.segments.filter((segment) =>
+        new RegExp(event.target.value, "i").exec(segment.name))
+    });
+  }
   render() {
     let center = {
       lat: 48.8566,
@@ -45,6 +55,11 @@ class App extends Component {
       <div className="App">
         <div className="Main">
             <div className="Search">
+              <input 
+                type="text"
+                placeholder="Search..."
+                value={this.state.search}
+                onChange={this.handleSearch}/>
             </div>
             <div className="Segments">
               {this.state.segments.map((segment)=>{
