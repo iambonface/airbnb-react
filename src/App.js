@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       segments: [],
+      allSegments: [],
       selectedSegment: null,
       search: ""
     }
@@ -19,7 +20,8 @@ class App extends Component {
       .then(response => response.json())
       .then((data) => {
         this.setState({
-          segments: data
+          segments: data,
+          allSegments: data
         });
       })
   }
@@ -36,7 +38,7 @@ class App extends Component {
     //debugger
     this.setState({
       search: event.target.value,
-      segments: this.state.segments.filter((segment) =>
+      segments: this.state.allSegments.filter((segment) =>
         new RegExp(event.target.value, "i").exec(segment.name))
     });
   }
