@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Segment from './components/Segment';
+import Marker from './components/Marker';
+import GoogleMapReact from 'google-map-react';
 import './App.css';
 
 class App extends Component {
@@ -19,7 +21,13 @@ class App extends Component {
         });
       })
   }
-
+   static defaultProps = {
+    center: {
+      lat: 48.8566,
+      lng: 2.35222
+    },
+    zoom: 11
+  };
 
   render() {
     return (
@@ -34,7 +42,21 @@ class App extends Component {
           </div>
         </div> 
 
-        <div className="Map"></div>       
+        <div className="Map">
+          <GoogleMapReact
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}>
+
+          <div className="Segments">
+            {this.state.segments.map((segment)=>{
+              return <Marker
+              lat={segment.lat}
+              lng={segment.lng}
+              text={segment.price}/>
+            })}
+          </div>
+          </GoogleMapReact>
+        </div>       
       </div>
     );
   }
