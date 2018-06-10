@@ -1,0 +1,9 @@
+.Marker {
+	width: 48px;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-radius: 2px;
+	text-align: center;
+	padding: 4px 0;
+	font-size: 18px;
+}

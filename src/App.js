@@ -21,42 +21,36 @@ class App extends Component {
         });
       })
   }
-   static defaultProps = {
-    center: {
+  render() {
+    const center = {
       lat: 48.8566,
       lng: 2.35222
-    },
-    zoom: 11
-  };
 
-  render() {
+  };
     return (
       <div className="App">
         <div className="Main">
-          <div className="Search">
-          </div>
-          <div className="Segments">
-            {this.state.segments.map((segment)=>{
-              return <Segment key={segment.id} segment={segment}/>
-            })}
-          </div>
+            <div className="Search">
+            </div>
+            <div className="Segments">
+              {this.state.segments.map((segment)=>{
+                return <Segment key={segment.id} segment={segment}/>
+              })}
+            </div>
         </div> 
 
         <div className="Map">
           <GoogleMapReact
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}>
+            defaultCenter={center}
+            defaultZoom={12}>
 
-          <div className="Segments">
             {this.state.segments.map((segment)=>{
-              return <Marker
-              lat={segment.lat}
-              lng={segment.lng}
-              text={segment.price}/>
-            })}
-          </div>
+                return  <Marker lat={segment.lat} lng={segment.lng}
+                            text={segment.price}/>
+              })}
+
           </GoogleMapReact>
-        </div>       
+        </div>    
       </div>
     );
   }

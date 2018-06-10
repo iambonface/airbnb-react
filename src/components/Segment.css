@@ -1,6 +1,10 @@
 .Segment {
   flex-basis: calc(50% - 20px);
   margin: 10px;
+  cursor: pointer;
+}
+.Segment:hover{
+	opacity: 0.9;
 }
 .Segment-picture {
 	height: 200px;
