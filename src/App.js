@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      segments: []
+      segments: [],
+      selectedSegment: null
     }
   }
   componentDidMount(){
@@ -21,12 +22,25 @@ class App extends Component {
         });
       })
   }
+
+  selectSegment = (segment) => {
+    //console.log(segment)
+    this.setState({
+      selectedSegment: segment
+    })
+
+  }
   render() {
-    const center = {
+    let center = {
       lat: 48.8566,
       lng: 2.35222
-
-  };
+    }
+    if (this.state.selectedSegment) {
+      center = {
+        lat: this.state.selectedSegment.lat,
+        lng: this.state.selectedSegment.lng
+      }
+    }
     return (
       <div className="App">
         <div className="Main">
@@ -34,18 +48,24 @@ class App extends Component {
             </div>
             <div className="Segments">
               {this.state.segments.map((segment)=>{
-                return <Segment key={segment.id} segment={segment}/>
+                return <Segment 
+                  key={segment.id} 
+                  segment={segment}
+                  selectSegment={this.selectSegment}/>
               })}
             </div>
         </div> 
 
         <div className="Map">
           <GoogleMapReact
-            defaultCenter={center}
-            defaultZoom={12}>
+            center={center}
+            zoom={12}>
 
             {this.state.segments.map((segment)=>{
-                return  <Marker lat={segment.lat} lng={segment.lng}
+                return  <Marker 
+                            key={segment.id}
+                            lat={segment.lat} 
+                            lng={segment.lng}
                             text={segment.price}/>
               })}
 

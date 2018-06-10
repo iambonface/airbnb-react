@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./Segment.css";
 
 class Segment extends Component {
+	handleClick = () => {
+		this.props.selectSegment(this.props.segment);
+	}
 	render() {
 
 		let symbol = this.props.segment.priceCurrency
@@ -17,7 +20,7 @@ class Segment extends Component {
 			backgroundImage: `url('${this.props.segment.imageUrl}')`
 		};
 		return(
-			<div className="Segment">
+			<div className="Segment" onClick={this.handleClick}>
 				<div className="Segment-picture" style={style}></div>
 				<div className="Segment-title">
 					{title}
